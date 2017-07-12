@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// Just spins an object using force/torque
 [RequireComponent(typeof(Rigidbody))]
 public class VelocitySpin : MonoBehaviour {
 
@@ -14,6 +15,7 @@ public class VelocitySpin : MonoBehaviour {
 
     private void Update() {
         if (Input.GetButtonDown("Fire1")) {
+            
             m_InitCast = Input.mousePosition;
         } else if (Input.GetButtonUp("Fire1")) {
             m_FinalCast = Input.mousePosition;
