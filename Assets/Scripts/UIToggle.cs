@@ -9,7 +9,7 @@ public class UIToggle : MonoBehaviour {
     private bool m_toggle = false;
     private Vector3 m_initPos;
 
-    public Renderer[] m_childRend;
+    private Renderer[] m_childRend;
 
     private void Start() {
         m_initPos = gameObject.transform.position;
