@@ -9,14 +9,18 @@ public class UIToggle : MonoBehaviour {
     private bool m_toggle = false;
     private Vector3 m_initPos;
 
+    public Renderer[] m_childRend;
+
     private void Start() {
         m_initPos = gameObject.transform.position;
+        m_childRend = GetComponentsInChildren<Renderer>();
     }
 
     private void Update() {
         if (Input.GetButtonDown("Fire2")) {
             Toggle();
         }
+        SetAlpha();
     }
 
     // First stops the toggle coroutine if its running, then run the toggle coroutine animation
@@ -38,6 +42,15 @@ public class UIToggle : MonoBehaviour {
             StartCoroutine(ToggleAnim(targetPos));
         } else {
             StopAllCoroutines();
+        }
+    }
+
+    private void SetAlpha() {
+        foreach (Renderer child in m_childRend) {
+            Color m_color = child.material.color;
+            float m_alpha = 1f + (gameObject.transform.position.y - m_initPos.y) / (m_initPos.y - (m_initPos.y - m_height));
+            m_color.a = m_alpha;
+            child.material.color = m_color;
         }
     }
 }
